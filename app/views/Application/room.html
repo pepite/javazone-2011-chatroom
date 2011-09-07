@@ -1,0 +1,41 @@
+#{extends 'main.html' /}
+#{set title:'chat room - JavaZone 2011' /}
+
+
+
+
+        <hgroup>
+                <h1>JavaZone 2011 Chat room</h1>
+        </hgroup>
+
+    <section class="box">
+       <input type="text" id="msg" name="text" placeholder="your message">
+       <div class="buttons">
+               <button id="btn" class="add">Post Message</button>
+       </div>
+    </section>
+
+    <section id="messages" class="box">
+
+    </section>
+
+
+<script>
+var socket = new WebSocket("@@{Application.ChatRoom.join(user)}");
+
+socket.onmessage = function(event) {
+	$("#messages").append("<p><strong>" + event.data + "</strong></p>");
+}
+
+$("#btn").click(function() {
+	socket.send($("#msg").val());
+	$("#msg").val("");
+});
+
+$("#msg").keyup(function(event){
+	  if(event.keyCode == 13){
+	    $("#btn").click();
+	  }
+});
+
+</script>

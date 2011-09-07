@@ -1,0 +1,15 @@
+#{extends 'main.html' /}
+#{set title:'chat room - JavaZone 2011' /}
+
+
+
+        <hgroup>
+                <h1>Welcome to the JavaZone chat room</h1>
+        </hgroup>
+ <section class="box">
+   
+<form action="@{room()}">
+	<input type="text" name="user" placeholder="Enter your nickname"/>
+	<input type="submit" value="enter chat room" />
+</form>
+</section>
